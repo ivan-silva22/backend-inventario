@@ -66,3 +66,44 @@ export const  deleteProduct = async (req, res) =>{
         })
     }
 }
+
+export const updatedProduct = async (req, res) =>{
+    try {
+        const product = await Product.findByIdAndUpdate(req.params.id);
+        if(!product){
+            return res.status(404).json({
+                success: false,
+                message: "Producto no encontrado",
+            })
+        };
+        res.status(200).json({
+            success: true,
+            message: "Producto actualizado exitosamente",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Error al intentar actualizar el producto",
+            error: error.message,
+        })
+    }
+}
+
+export const createProduct = async (req, res) =>{
+    try {
+        const newProduct =  new Product(req.body);
+        await newProduct.save();
+        res.status(201).json({
+            success: true,
+            message: "Producto creado exitosamente",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Error al intentar crear el producto",
+            error: error.message,
+        })
+    }
+}
