@@ -61,3 +61,55 @@ export const getInventoryMovements = async (req, res) =>{
         })
     }
 }
+
+export const getInventoryMovement = async (req, res) =>{
+    try {
+        const movement = await InventoryMovement.findById(req.params.id);
+        if(!movement){
+            res.status(404).json({
+                success: false,
+                message: "Movimiento de inventario no encontrado",
+            })
+        }
+        res.status(200).json({
+            success: true,
+            movement,
+            message: "Movimiento de inventario obtenido exitosamente",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Error al obtener el movimiento de inventario",
+        })
+    }
+}
+
+export const deleteInventoryMovement = async (req, res) =>{
+    try {
+        const movement = await InventoryMovement.findById(req.params.id);
+        if(!movement){
+            res.status(404).json({
+                success: false,
+                message: "Movimiento de inventario no encontrado",
+            })
+        }
+        const product = await Product.findById(movement.product_id);
+        if(movement.type === "entry"){
+            product.stock -= movement.quantity;
+        }else{
+            product.stock += movement.quantity;
+        }
+        await product.save();
+        res.status(200).json({
+            success: true,
+            message: "Movimiento de inventario eliminado exitosamente",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Error al eliminar el movimiento de inventario",
+        })
+    }
+}
