@@ -46,20 +46,20 @@ Primero, clona este repositorio en tu máquina local:
 
 ```bash
 git https://github.com/ivan-silva22/backend-inventario.git
-
+```
 ### 2. Instalar las dependencias
 
 ```bash
 git npm install
-
+```
 ### 3. Configurar el entorno
 
 ```bash
 git PORT=4000
     DB_URI=mongodb://localhost:27017/inventario
-
+```
 ### 4. Ejecutar el proyecto
 
 ```bash
 git npm start
-
+```
