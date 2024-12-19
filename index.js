@@ -3,6 +3,7 @@ import cors from "cors"
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 import path from "path";
+import "./src/database/dbConecction";
 import routerProducts from "./src/routes/products.routes";
 import routerUsers from "./src/routes/users.routes";
 import routerSuppliers from "./src/routes/supplier.routes";

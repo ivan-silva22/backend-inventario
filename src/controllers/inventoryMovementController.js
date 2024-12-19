@@ -1,5 +1,5 @@
 import InventoryMovement from "../models/inventoryMovement";
-import Product from "../models/product";
+import Product from "../models/products";
 
 export const createInventoryMovement = async (req, res) =>{ 
     try {

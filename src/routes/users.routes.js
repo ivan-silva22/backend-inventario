@@ -5,3 +5,5 @@ const router = Router();
 
 router.route("/users").post(createUser).get(getUsers);
 router.route("/user/:id").get(getUser).delete(deleteUser).put(updatedUser);
+
+export default router;

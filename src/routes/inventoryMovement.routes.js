@@ -5,3 +5,5 @@ const router = Router();
 
 router.route("/inventoryMovements").post(createInventoryMovement).get(getInventoryMovements);
 router.route("/inventoryMovement/:id").get(getInventoryMovement).delete(deleteInventoryMovement);
+
+export default router;
